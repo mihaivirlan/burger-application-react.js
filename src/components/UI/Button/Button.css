@@ -15,7 +15,7 @@
     padding-left: 0;
 }
 
-.Button:enabled {
+.Button:disabled {
     color: #ccc;
     cursor: not-allowed;
 }
