@@ -6,7 +6,7 @@ const initialState = {
 };
 
 const reducer = (state = initialState, actions) => {
-    switch (action.type) {
+    switch (actions.type) {
         case actionTypes.PURCHASE_BURGER_START:
             return {
                 ...state,
@@ -14,8 +14,8 @@ const reducer = (state = initialState, actions) => {
             };
         case actionTypes.PURCHASE_BURGER_SUCCESS:
             const newOrder = {
-                ...action.orderData,
-                id: action.orderId
+                ...actions.orderData,
+                id: actions.orderId
             };
             return {
                 ...state,
