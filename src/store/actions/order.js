@@ -2,7 +2,7 @@ import * as actionTypes from './actionTypes';
 import axios from '../../axios-orders';
 import order from "../../components/Order/Order";
 
-export const purchaseBurgerSuccess = (id, orderData) => {
+export const purchaseBurgerSuccess = ( id, orderData ) => {
     return {
         type: actionTypes.PURCHASE_BURGER_SUCCESS,
         oderId: id,
@@ -10,7 +10,7 @@ export const purchaseBurgerSuccess = (id, orderData) => {
     }
 };
 
-export const puchaseBurgerFail = (error) => {
+export const puchaseBurgerFail = ( error ) => {
     return {
         type: actionTypes.PURCHASE_BURGER_FAIL,
         error: error
@@ -23,10 +23,10 @@ export const purchaseBurgerStart = () => {
     };
 };
 
-export const purchaseBurger = (orderData) => {
+export const purchaseBurger = ( orderData, token ) => {
     return dispatch => {
         dispatch(purchaseBurgerStart());
-        axios.post('/orders.json', orderData)
+        axios.post('/orders.json?auth=' + token, orderData)
             .then(response => {
                 console.log(response.data);
                 dispatch(purchaseBurgerSuccess(response.data.name, orderData))
@@ -42,14 +42,14 @@ export const purchaseInit = () => {
     }
 };
 
-export const fetchOrdersSuccess = (orders) => {
+export const fetchOrdersSuccess = ( orders ) => {
     return {
         type: actionTypes.FETCH_ORDERS_SUCCESS,
         orders: orders
     }
 };
 
-export const fetchOrdersFail = (error) => {
+export const fetchOrdersFail = ( error ) => {
     return {
         type: actionTypes.FETCH_INGREDIENTS_FAILD,
         error: error
@@ -62,10 +62,10 @@ export const fetchOrdersStart = () => {
     }
 };
 
-export const fetchOrders = () => {
+export const fetchOrders = ( token ) => {
     return dispatch => {
         dispatch(fetchOrdersStart());
-        axios.get('/orders.json')
+        axios.get('/orders.json?auth=' + token)
             .then(res => {
                 const fetchedOrders = [];
                 for (let key in res.data) {
