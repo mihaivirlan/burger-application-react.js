@@ -11,7 +11,7 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import * as burgerBuilderActions from '../../store/actions/index';
 import axios from '../../axios-orders';
 
-class BurgerBuilder extends Component {
+export class BurgerBuilder extends Component {
 
     state = {
         purchasing: false
@@ -80,10 +80,6 @@ class BurgerBuilder extends Component {
                 purchaseCancelled={this.purchaseCancelHandler}
                 purchaseContinued={this.purchaseContinueHandler}/>;
         }
-        // if (this.state.loading) {
-        //     orderSummary = <Spinner/>
-        // }
-
         return (
             <Aux>
                 <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
